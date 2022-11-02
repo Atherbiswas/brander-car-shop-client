@@ -4,7 +4,8 @@ import siteLogo from '../../../assets/logo.svg';
 
 const Header = () => {
     const navbarItems = <>
-        <li className='font-semibold'> <Link to='/'>Home</Link> </li>
+        <li className='font-semibold text-xl'> <Link to='/'>Home</Link> </li>
+        <li className='font-semibold text-xl'> <Link to='/login'>Login</Link> </li>
     </>
     return (
         <div className="navbar h-20 pt-12 mb-12 bg-base-100">
