@@ -4,7 +4,7 @@ import { HiLocationMarker } from "react-icons/hi";
 
 const Contact = () => {
     return (
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 bg-black text-white py-6 rounded-md'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-black text-white p-9 rounded-md mt-12'>
             <div className='flex justify-start items-center p-2 mx-2'>
                 <FaWpforms className='text-3xl'></FaWpforms>
                 <div className='m-2'>
