@@ -3,7 +3,7 @@ import logo from '../../../assets/logo.svg';
 
 const Footer = () => {
     return (
-        <footer className="footer p-28 bg-black text-white">
+        <footer className="footer p-28 bg-black text-white mt-5">
             <div>
                 <img src={logo} alt="" />
                 <p>Barander Car Shop Since 1998</p>
