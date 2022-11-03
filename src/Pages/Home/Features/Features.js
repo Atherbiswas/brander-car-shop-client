@@ -33,7 +33,7 @@ const Features = () => {
                     </div>
                     <div className='mx-auto border border-slate-300 p-2 rounded'>
                         <CiDeliveryTruck className='text-7xl mx-4'></CiDeliveryTruck>
-                        <p className='text-xl font-semibold'>Timely Delivery</p>
+                        <p className='text-xl font-semibold'>Fastest Delivery</p>
                     </div>
 
                 </div>
