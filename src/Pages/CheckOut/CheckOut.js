@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
@@ -24,6 +25,29 @@ const CheckOut = () => {
             phone,
             message
         }
+
+        if(phone.length < 11){
+            toast.error('Phone number should be 11 characters or longer')
+        }
+        else{
+            fetch('http://localhost:5000/orders', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(order)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            if(data.acknowledged){
+                toast.success('Order confirm successfully');
+                form.reset();
+            }
+        })
+        .catch(error => console.error(error))
+        }
+
     }
     return (
         <div>
@@ -35,7 +59,7 @@ const CheckOut = () => {
 
                     <input type="text" name="lastName" placeholder="Last Name" className="input input-bordered w-full" />
 
-                    <input type="text" name="phone" placeholder="Your Phone" className="input input-bordered w-full" />
+                    <input type="text" name="phone" placeholder="Your Phone" className="input input-bordered w-full" required/>
 
                     <input type="text" name="email" placeholder="Your Email" defaultValue={user?.email} className="input input-bordered w-full" readOnly/>
                     </div>
