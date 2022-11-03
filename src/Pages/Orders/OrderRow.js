@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-const OrderRow = ({order, handleDelete}) => {
-    const {_id, serviceName, price, phone,email, customer, service} = order;
+const OrderRow = ({order, handleDelete, handleStatusUpdate}) => {
+    const {_id, serviceName, price, phone,email, customer, service, status} = order;
     const [orderService, setOrderservice] = useState({});
 
     useEffect( () => {
@@ -23,7 +23,7 @@ const OrderRow = ({order, handleDelete}) => {
              <td>
                 <div className="flex items-center space-x-3">
                     <div className="avatar">
-                        <div className="rounded w-12 h-12">
+                        <div className="rounded w-20 h-12">
                             {
                                 orderService?.img &&
                                 <img src={orderService.img} alt="Avatar Tailwind CSS Component" />
@@ -43,7 +43,10 @@ const OrderRow = ({order, handleDelete}) => {
                             </td>
                             <td>{email}</td>
                         <th>
-            </th>
+                    <button 
+                    onClick={() => handleStatusUpdate(_id)}
+                    className='btn btn-ghost btn-xs'>{status ? status : 'pending'}</button>
+                        </th>
         </tr>
     );
 };

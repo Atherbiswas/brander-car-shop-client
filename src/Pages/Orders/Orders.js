@@ -33,6 +33,28 @@ const Orders = () => {
 
     }
 
+    const handleStatusUpdate = id => {
+        fetch(`http://localhost:5000/orders/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({status: 'approved'})
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            if(data.modifiedCount > 0){
+                const remaining = orders.filter(odr => odr._id !== id);
+                const approving = orders.find(odr => odr._id === id);
+                approving.status = 'Approved'
+
+                const newOrders = [approving, ...remaining];
+                setOrders(newOrders);
+            }
+        })
+    }
+
     return (
         <div>
             <h2 className='text-2xl text-center'>You have <span className='font-bold'>{orders.length}</span> orders.</h2>
@@ -46,7 +68,7 @@ const Orders = () => {
                         <th>Customer Name</th>
                         <th>Service name & Price</th>
                         <th>Email</th>
-                        <th>Message</th>
+                        <th>Status</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -55,6 +77,7 @@ const Orders = () => {
                         key={order._id}
                         order={order}
                         handleDelete={handleDelete}
+                        handleStatusUpdate={handleStatusUpdate}
                         ></OrderRow>)
                     }
                     </tbody>
