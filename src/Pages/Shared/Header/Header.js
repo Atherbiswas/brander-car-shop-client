@@ -1,16 +1,27 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import siteLogo from '../../../assets/logo.svg';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const Header = () => {
-    const {user} = useContext(AuthContext);
+    const {user, logoutUser} = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const handelLogout = () => {
+        logoutUser()
+        .then( () => {
+          navigate('/')
+    
+        })
+        .catch(err => console.error(err))
+      }
     const navbarItems = <>
         <li className='font-semibold text-xl'> <Link to='/'>Home</Link> </li>
         {
             user?.email?
             <>
             <li className='font-semibold text-xl'> <Link to='/orders'>Orders</Link> </li>
+            <li className='font-semibold text-xl'> <Link onClick={handelLogout}>Logout</Link> </li>
             </>
             :
             <li className='font-semibold text-xl'> <Link to='/login'>Login</Link> </li>
